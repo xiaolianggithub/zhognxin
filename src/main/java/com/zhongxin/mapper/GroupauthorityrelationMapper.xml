@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhongxin.mapper.GroupauthorityrelationMapper" >
+  <resultMap id="BaseResultMap" type="com.zhongxin.pojo.Groupauthorityrelation" >
+    <id column="group_authority_relation_id" property="groupAuthorityRelationId" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="authority_id" property="authorityId" jdbcType="BIGINT" />
+    <result column="authority_type" property="authorityType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    group_authority_relation_id, group_id, authority_id, authority_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhongxin.pojo.GroupauthorityrelationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from groupauthorityrelation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from groupauthorityrelation
+    where group_authority_relation_id = #{groupAuthorityRelationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from groupauthorityrelation
+    where group_authority_relation_id = #{groupAuthorityRelationId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhongxin.pojo.GroupauthorityrelationExample" >
+    delete from groupauthorityrelation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhongxin.pojo.Groupauthorityrelation" >
+    insert into groupauthorityrelation (group_authority_relation_id, group_id, 
+      authority_id, authority_type)
+    values (#{groupAuthorityRelationId,jdbcType=BIGINT}, #{groupId,jdbcType=BIGINT}, 
+      #{authorityId,jdbcType=BIGINT}, #{authorityType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhongxin.pojo.Groupauthorityrelation" >
+    insert into groupauthorityrelation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupAuthorityRelationId != null" >
+        group_authority_relation_id,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="authorityId != null" >
+        authority_id,
+      </if>
+      <if test="authorityType != null" >
+        authority_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupAuthorityRelationId != null" >
+        #{groupAuthorityRelationId,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null" >
+        #{authorityId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityType != null" >
+        #{authorityType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhongxin.pojo.GroupauthorityrelationExample" resultType="java.lang.Integer" >
+    select count(*) from groupauthorityrelation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update groupauthorityrelation
+    <set >
+      <if test="record.groupAuthorityRelationId != null" >
+        group_authority_relation_id = #{record.groupAuthorityRelationId,jdbcType=BIGINT},
+      </if>
+      <if test="record.groupId != null" >
+        group_id = #{record.groupId,jdbcType=BIGINT},
+      </if>
+      <if test="record.authorityId != null" >
+        authority_id = #{record.authorityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.authorityType != null" >
+        authority_type = #{record.authorityType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update groupauthorityrelation
+    set group_authority_relation_id = #{record.groupAuthorityRelationId,jdbcType=BIGINT},
+      group_id = #{record.groupId,jdbcType=BIGINT},
+      authority_id = #{record.authorityId,jdbcType=BIGINT},
+      authority_type = #{record.authorityType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhongxin.pojo.Groupauthorityrelation" >
+    update groupauthorityrelation
+    <set >
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null" >
+        authority_id = #{authorityId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityType != null" >
+        authority_type = #{authorityType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where group_authority_relation_id = #{groupAuthorityRelationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhongxin.pojo.Groupauthorityrelation" >
+    update groupauthorityrelation
+    set group_id = #{groupId,jdbcType=BIGINT},
+      authority_id = #{authorityId,jdbcType=BIGINT},
+      authority_type = #{authorityType,jdbcType=INTEGER}
+    where group_authority_relation_id = #{groupAuthorityRelationId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -271,6 +271,11 @@
 		</dependency>
 		<!-- Mybatis -->
 		<dependency>
+    <groupId>org.apache.ibatis</groupId>
+    <artifactId>ibatis-core</artifactId>
+    <version>3.0</version>
+</dependency>
+		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 		</dependency>
@@ -286,6 +291,17 @@
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 		</dependency>
+		<dependency>  
+                        <groupId>org.mybatis.generator</groupId>  
+                        <artifactId>mybatis-generator-core</artifactId>  
+                        <version>1.3.3</version>  
+                    </dependency>  
+                    <dependency>  
+                        <groupId>mysql</groupId>  
+                        <artifactId>mysql-connector-java</artifactId>  
+                        <version>5.1.35</version>  
+                        <scope>runtime</scope>  
+                    </dependency>  
 		<!-- MySql -->
 		<dependency>
 			<groupId>mysql</groupId>
