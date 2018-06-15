@@ -112,4 +112,15 @@ public class User {
     public void setCount(Long count) {
         this.count = count;
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+    
+    
 }

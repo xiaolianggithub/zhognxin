@@ -8,6 +8,7 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 	<context:component-scan base-package="com.zhongxin.service" />
+	<context:component-scan base-package="com.zhongxin.shiro" />
 	<!-- 数据库连接池 -->
 	<!-- 加载配置文件 -->
 	<context:property-placeholder location="classpath:properties/*.properties" />
@@ -32,22 +33,22 @@
 		<property name="basePackage" value="com.zhongxin.mapper" />
 	</bean>
 
-	<!-- 自定义Realm
-	<bean id="myRealm" class="com.hik.realm.MyRealm" /> -->
-	<!-- 安全管理器 
+	<!-- 自定义Realm -->
+	<bean id="loginRealm" class="com.zhongxin.shiro.LoginRealm" /> 
+	<!-- 安全管理器  -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="myRealm" />
-	</bean>-->
+		<property name="realm" ref="loginRealm" />
+	</bean>
 
-	<!-- Shiro过滤器 
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">-->
-		<!-- Shiro的核心安全接口,这个属性是必须的 
-		<property name="securityManager" ref="securityManager" />-->
-		<!-- 身份认证失败，则跳转到登录页面的配置 
-		<property name="loginUrl" value="/login.jsp" />-->
-		<!-- 权限认证失败，则跳转到指定页面 
-		<property name="unauthorizedUrl" value="/unauthor.jsp" />-->
-		<!-- Shiro连接约束配置,即过滤链的定义
+	<!-- Shiro过滤器  -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- Shiro的核心安全接口,这个属性是必须的  -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 身份认证失败，则跳转到登录页面的配置  -->
+		<property name="loginUrl" value="/login.jsp" />
+		<!-- 权限认证失败，则跳转到指定页面  -->
+		<property name="unauthorizedUrl" value="/unauthor.jsp" />
+		<!-- Shiro连接约束配置,即过滤链的定义  -->
 		<property name="filterChainDefinitions">
 			<value>
 				/login=anon
@@ -56,5 +57,5 @@
 				/teacher=perms["user:create"]
 			</value>
 		</property>
-	</bean> -->
+	</bean>
 </beans>
